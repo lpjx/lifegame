@@ -153,8 +153,7 @@ def readmap():
     i=0
     AllLines = fsock.readlines()
     for EachLine in AllLines:
-        print(EachLine)
-        if EachLine == '\r\n':
+        if len(EachLine) != 81:
             pass
         else:
             for j in range(0,WIDTH-10):
@@ -164,7 +163,7 @@ def readmap():
                     pygame.world[i][j]=0
             i=i+1
     fsock.close()
-
+    print(pygame.world[0][0])
 
 #绘图函数，注意到我们是把画布重置了再遍历整个世界地图，因此有很大的性能提升空间
 def draw():
@@ -259,7 +258,6 @@ def stop():
                     return 'Reset'
                 elif sp_row>=12 and sp_row<15:
                     readmap()
-                    draw()
                 elif sp_row>=15 and sp_row<18:
                     savemap()
                 elif sp_row>=18 and sp_row<23:
@@ -325,7 +323,6 @@ def one_step():
                     return 'Reset'
                 elif sp_row>=12 and sp_row<15:
                     readmap()
-                    draw()
                 elif sp_row>=15 and sp_row<18:
                     savemap()
                 elif sp_row>=18 and sp_row<23:
@@ -382,7 +379,6 @@ def move():
                     return 'Reset'
                 elif sp_row>=12 and sp_row<15:
                     readmap()
-                    draw()
                 elif sp_row>=15 and sp_row<18:
                     savemap()
                 elif sp_row>=18 and sp_row<23:
